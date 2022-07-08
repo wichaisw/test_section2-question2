@@ -20,24 +20,30 @@ export class AppComponent {
     this.categoriesService.findAll()
       .subscribe({
         next: (data: ICategories) => { 
-          for(let category of data.categories) {
-            let lowercaseCategory = category.toLocaleLowerCase();
-            // define dictionary object to capitalize categories later with O(1) time complexity
-            this.categoriesDict[lowercaseCategory] = category;
-            
-            // populate lowercase categories array
-            this.categories.push(lowercaseCategory);
-          }
+          this.generateDictionary(data.categories);
           this.displayCategories = this.categories;
-
         },
         error: () => console.error('failed to get categories data')
       });
   }
 
-  filterCategories(): void {
+  generateDictionary(categories: string[]) {
+    for(let category of categories) {
+      let lowercaseCategory = category.toLocaleLowerCase();
+      // define dictionary object to capitalize categories later with O(1) time complexity
+      this.categoriesDict[lowercaseCategory] = category;
+      
+      // populate lowercase categories array
+      this.categories.push(lowercaseCategory);
+    }
+  }
+
+  filterCategories(val: string): void {
+    val = val.toLocaleLowerCase();
+
     this.displayCategories = this.categories.filter( (cat: string) => {
-      return cat.includes(this.filterVal);
+      return cat.includes(val);
     })
   }
+
 }

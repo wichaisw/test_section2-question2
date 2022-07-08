@@ -22,3 +22,6 @@
 .main-wrapper thead {
   text-align: center;
 }
+.main-wrapper td {
+  border: 1px solid red;
+}

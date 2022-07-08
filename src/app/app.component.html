@@ -1,7 +1,7 @@
 <div class="container">
   <form class="form-wrapper">
     <label for="category-filter">Filter: </label>
-    <input type="text" id="category-filter" name="category-filter" [(ngModel)]="filterVal" (ngModelChange)="filterCategories()">
+    <input type="text" id="category-filter" name="category-filter" [(ngModel)]="filterVal" (ngModelChange)="filterCategories($event)">
   </form>
 
   <main class="main-wrapper">
